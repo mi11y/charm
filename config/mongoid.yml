@@ -1,0 +1,4 @@
+development:
+  clients:
+    default:
+      uri: mongodb://root:password@localhost:27017/

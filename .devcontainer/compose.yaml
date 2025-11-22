@@ -1,0 +1,67 @@
+name: "charm"
+
+services:
+  rails-app:
+    build:
+      context: ..
+      dockerfile: .devcontainer/Dockerfile
+    env_file: .env
+    volumes:
+      - ../..:/workspaces:cached
+      # Overrides default command so things don't shut down after the process ends.
+    command: sleep infinity
+
+    # Uncomment the next line to use a non-root user for all processes.
+    # user: vscode
+
+    # Use "forwardPorts" in **devcontainer.json** to forward an app port locally.
+    # (Adding the "ports" property to this file will not forward from a Codespace.)
+    depends_on:
+      - selenium
+      - mongo
+
+  selenium:
+    image: selenium/standalone-chromium
+    restart: unless-stopped
+  mongo:
+    image: mongo:8.0
+    ports: 
+      - 27017:27017
+    env_file: .env
+    restart: always
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=${MONGO_INITDB_ROOT_USERNAME}
+      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_INITDB_ROOT_PASSWORD}
+  localstack:
+    image: localstack/localstack:stable
+    env_file: .env
+    ports:
+      - "127.0.0.1:4566:4566" # LocalStack Gateway
+      - "127.0.0.1:4510-4559:4510-4559" # external services port range
+    environment:
+      # LocalStack configuration: https://docs.localstack.cloud/references/configuration/
+      - DEBUG=${DEBUG:-0}
+    volumes:
+      - "${LOCALSTACK_VOLUME_DIR:-./volume}:/var/lib/localstack"
+      - "/var/run/docker.sock:/var/run/docker.sock"
+  datadog:
+    image: datadog/agent:7
+    env_file: .env
+    container_name: dd-agent
+    links:
+      - rails-app
+      - selenium
+      - mongo
+      - localstack
+    environment:
+     - DD_API_KEY=${DD_API_KEY}
+     - DD_DOGSTATSD_NON_LOCAL_TRAFFIC=true
+     - DD_APM_ENABLED=true
+     - DD_APM_NON_LOCAL_TRAFFIC=true
+     - DD_AGENT_HOST=dd-agent
+     - DD_SITE=us3.datadoghq.com
+     - DD_ENV=dev
+    volumes:
+     - /var/run/docker.sock:/var/run/docker.sock
+     - /proc/:/host/proc/:ro
+     - /sys/fs/cgroup:/host/sys/fs/cgroup:ro
