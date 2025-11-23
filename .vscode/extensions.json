@@ -1,14 +1,14 @@
 {
     "recommendations": [
         "ms-vscode-remote.remote-containers",
-        "pkief.material-icon-theme",
-        "datadog.datadog-vscode",
-        "ms-azuretools.vscode-docker",
-        "docker.docker",
-        "redhat.vscode-xml",
-        "shopify.ruby-extensions-pack",
         "ms-azuretools.vscode-containers",
+        "ms-azuretools.vscode-docker",
+        "marcoroth.herb-lsp",
+        "datadog.datadog-vscode",
+        "docker.docker",
         "shopify.ruby-lsp",
-        "sorbet.sorbet-vscode-extension"
+        "shopify.ruby-extensions-pack",
+        "sorbet.sorbet-vscode-extension",
+        "redhat.vscode-xml",
     ]
 }
