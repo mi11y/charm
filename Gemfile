@@ -16,7 +16,7 @@ gem "mongoid"
 gem "datadog", require: "datadog/auto_instrument"
 
 gem "omniauth-auth0", "~> 3.0"
-gem "omniauth-rails_csrf_protection", "~> 1.0"
+gem "omniauth-rails_csrf_protection", "~> 2.0"
 
 gem "sorbet", group: :development
 gem "sorbet-runtime"

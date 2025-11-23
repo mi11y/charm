@@ -241,7 +241,7 @@ GEM
     omniauth-oauth2 (1.8.0)
       oauth2 (>= 1.4, < 3)
       omniauth (~> 2.0)
-    omniauth-rails_csrf_protection (1.0.2)
+    omniauth-rails_csrf_protection (2.0.0)
       actionpack (>= 4.2)
       omniauth (~> 2.0)
     ostruct (0.6.3)
@@ -456,7 +456,7 @@ DEPENDENCIES
   kamal
   mongoid
   omniauth-auth0 (~> 3.0)
-  omniauth-rails_csrf_protection (~> 1.0)
+  omniauth-rails_csrf_protection (~> 2.0)
   propshaft
   puma (>= 5.0)
   rails (~> 8.0.4)
