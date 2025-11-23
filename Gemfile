@@ -12,8 +12,11 @@ gem "bootsnap", require: false
 gem "kamal", require: false
 gem "thruster", require: false
 
-gem 'mongoid'
-gem 'datadog', require: 'datadog/auto_instrument'
+gem "mongoid"
+gem "datadog", require: "datadog/auto_instrument"
+
+gem "omniauth-auth0", "~> 3.0"
+gem "omniauth-rails_csrf_protection", "~> 1.0"
 
 group :development, :test do
   gem "debug", platforms: %i[ mri windows ], require: "debug/prelude"
