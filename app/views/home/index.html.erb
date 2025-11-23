@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+
+<html>
+  <div class="flex-container">
+    <div class="cards">
+      <div class="card">
+        <div class="content">
+          <p>
+            Display a login button here, redirect to Auth0, and then return
+            here. Make a UI component appear if the user is authenticated.
+          </p>
+        </div>
+
+        <footer>Card footer</footer>
+      </div>
+
+      <div class="card">
+        <div class="content">
+          <h3>Auth0 Login</h3>
+        </div>
+
+        <%= button_to 'Login', link_to: '/auth/auth0', method: :post %>
+
+        <footer>Card footer</footer>
+      </div>
+    </div>
+  </div>
+</html>
