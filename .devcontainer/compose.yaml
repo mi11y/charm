@@ -2,12 +2,13 @@ name: "charm"
 
 services:
   rails-app:
+    container_name: charm-rails
     build:
       context: ..
       dockerfile: .devcontainer/Dockerfile
     env_file: .env
     volumes:
-      - ../..:/workspaces:cached
+      - ../../charm:/charm:cached
       # Overrides default command so things don't shut down after the process ends.
     command: sleep infinity
 
@@ -25,6 +26,9 @@ services:
     restart: unless-stopped
   mongo:
     image: mongo:8.0
+    container_name: charm-mongo
+    expose:
+      - 27017
     ports: 
       - 27017:27017
     env_file: .env
@@ -48,6 +52,10 @@ services:
     image: datadog/agent:7
     env_file: .env
     container_name: dd-agent
+    expose:
+      - 8126
+    ports:
+      - 8126:8126
     links:
       - rails-app
       - selenium

@@ -1,4 +1,13 @@
+# Source - https://stackoverflow.com/a
+# Posted by Mashpy Rahman
+# Retrieved 2025-11-23, License - CC BY-SA 4.0
+
 development:
   clients:
     default:
-      uri: mongodb://root:password@localhost:27017/
+      uri: mongodb://root:password@charm-mongo:27017/charm
+      options:
+        roles:
+          - "dbOwner"
+        auth_mech: :scram
+        auth_source: admin
