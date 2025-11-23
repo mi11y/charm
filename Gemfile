@@ -18,6 +18,10 @@ gem "datadog", require: "datadog/auto_instrument"
 gem "omniauth-auth0", "~> 3.0"
 gem "omniauth-rails_csrf_protection", "~> 1.0"
 
+gem "sorbet", group: :development
+gem "sorbet-runtime"
+gem "tapioca", "~> 0.17.8", require: false, group: [ :development, :test ]
+
 group :development, :test do
   gem "debug", platforms: %i[ mri windows ], require: "debug/prelude"
   gem "brakeman", require: false
